@@ -64,6 +64,17 @@ func (s SpeSkillTest) ParityOutlier(number []int) string {
 	return "No Outlier"
 }
 
+func (s SpeSkillTest) NeedleHaystack(haystack []string, needle string) (string, int) {
+	// Search for needle in haystack
+	for index, value := range haystack {
+		if value == needle {
+			return needle, index
+		}
+	}
+
+	return "Not Found", -1
+}
+
 func main() {
 	// Create an instance of the SpeSkillTest struct
 	speSkillTest := SpeSkillTest{}
@@ -73,4 +84,8 @@ func main() {
 
 	// Call the ParityOutlier method
 	fmt.Println("Output ParityOutlier : ", speSkillTest.ParityOutlier([]int{2, 4, 0, 100, 4, 11, 2602, 36}))
+
+	// Call the NeedleHaystack method
+	needle, index := speSkillTest.NeedleHaystack([]string{"a", "b", "c", "d", "e"}, "c")
+	fmt.Println("Output NeedleHaystack : ", needle, index)
 }
