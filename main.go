@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"slices"
 	"strconv"
 )
 
@@ -75,6 +76,18 @@ func (s SpeSkillTest) NeedleHaystack(haystack []string, needle string) (string, 
 	return "Not Found", -1
 }
 
+func (s SpeSkillTest) BlueOcean(input, sub []int) []int {
+	result := []int{}
+	for _, value := range input {
+		// Remove number if exist in sub
+		if !slices.Contains(sub, value) {
+			result = append(result, value)
+		}
+	}
+
+	return result
+}
+
 func main() {
 	// Create an instance of the SpeSkillTest struct
 	speSkillTest := SpeSkillTest{}
@@ -88,4 +101,7 @@ func main() {
 	// Call the NeedleHaystack method
 	needle, index := speSkillTest.NeedleHaystack([]string{"a", "b", "c", "d", "e"}, "c")
 	fmt.Println("Output NeedleHaystack : ", needle, index)
+
+	// Call the BlueOcean method
+	fmt.Println("Output BlueOcean : ", speSkillTest.BlueOcean([]int{1, 2, 3, 4, 6, 10}, []int{1, 6}))
 }
